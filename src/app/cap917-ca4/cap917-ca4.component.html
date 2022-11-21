@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body [ngStyle]="{'background':'pink'}">
+
+  <nav class="navbar navbar-expand-lg bg-black navbar-black">
+    <div class="container-fluid">
+      <img style="padding-left:50px;" height="70xp"
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOojklQu2QCCNAzw6YySjZermB23rdEcIkLQ&usqp=CAU">
+      <a class="navbar-brand text-light" href="#"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <h5 class="text-light">Online Grocery Shop<br style="width: 5rem;"><a class="text-warning">Apply Job At Grocery
+            Shop</a></h5>
+      </div>
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <h5 class="text-info">Home of Fresh Groceries</h5>
+      </div>
+
+    </div>
+  </nav>
+  <div class="container-fluid mt-3">
+
+    <div class="text-left text-black">
+      <h3>Apply Online</h3>
+      <h6> Login/Sign Up</h6>
+    </div>
+    <form #frm="ngForm" (ngSubmit)="submit(frm)">
+      <div class="container">
+        <h5 class="row">1. Name</h5>
+        <div class="col-5 form-group">
+          <label for="id1">Last Name</label>
+          <input required ngModel id="id1" name="V1" type="text" class="form-control" #V1="ngModel"
+            (change)="changeV1(V1)" minlength="5" maxlength="15" />
+          <div class="alert alert-danger" *ngIf="V1.touched && !V1.valid">
+            <div *ngIf="V1.errors?.['required']">Please Enter Your Last Name !! </div>
+            <div *ngIf="V1.errors?.['minlength']">Minimum character length should be 5</div>
+            <div *ngIf="V1.errors?.['maxlength']">Maximum character length should be 10</div>
+          </div>
+          <label for="id1">First Name</label>
+          <input required ngModel id="id1" name="min" type="text" class="form-control" #min="ngModel"
+            (change)="changeV1(V1)" minlength="5" maxlength="15" />
+          <div class="alert alert-danger" *ngIf="min.touched && !min.valid">
+            <div *ngIf="min.errors?.['required']">Please Enter Your First Name !! </div>
+            <div *ngIf="min.errors?.['minlength']">Minimum character length should be 5</div>
+            <div *ngIf="min.errors?.['maxlength']">Maximum character length should be 10</div>
+          </div>
+          <label for="id1">Middle Name (if any)</label>
+          <input required ngModel id="id1" name="V1" type="text" class="form-control" #V1="ngModel"
+            (change)="changeV1(V1)" minlength="5" maxlength="15" />
+        </div>
+        <br>
+        <h5 class="row">2. Gender</h5>
+        <form class="radio" #frmm="ngForm">
+          <label for="">
+            <input type="radio" ngModel name="Selected:" value="Male">
+            Male
+          </label> <br>
+          <label for="">
+            <input type="radio" ngModel name="Selected:" value="Female">
+            Female</label><br>
+          {{frmm.value | json}}
+        </form>
+        <br>
+        <form>
+          <h5 class="row">3. Date of Birth</h5>
+          <div class="col-5">
+            <label for="id1">Enter Year of Birth</label>
+            <input required ngModel id="id1" name="V1" type="number" class="form-control"
+              placeholder="Only for above 2001" #V1="ngModel" (change)="changeV1(V1)" minlength="5" maxlength="15" />
+          </div>
+        </form>
+        <p>
+        <h5 class="row">4. Eligiblity</h5>
+        <div class="checkbox">
+          <label>Qualification : You can click on multiple</label>
+          <br>10th<input type="checkbox" id="id4" ngModel name="10th">
+          <br>12th<input type="checkbox" id="id3" ngModel name="12th">
+          <br>Under-Graduate<input type="checkbox" id="id1" ngModel name="Under-Graduate">
+          <br>Post-Graduate<input type="checkbox" id="id2" ngModel name="Post-Graduate">
+        </div><br>
+        <p>
+        <h5 class="row">5. Which Post You Want to Apply</h5>
+        <div class="form-group">
+          <div class="col-5">
+            <label for="iddrp">Post Name:</label><br>
+            <select ngModel name="Post Name" id="iddrp" class="form-control">
+              <option *ngFor="let pt of post" [value]="pt.name">{{pt.id}}.
+                {{pt.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <button type="Submit" [disabled]="!frm.valid" (click)="submit(frm)"
+            class="col-6 mt-1 btn btn-success">Submit</button>
+          <button type="Reset" class="col-6 mt-1 btn btn-danger">Reset</button>
+        </div>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</body>
+
+</html>
